@@ -1,0 +1,5 @@
+auto wlan0
+iface wlan0 inet manual
+    wireless-channel 9
+    wireless-essid batman_mesh
+    wireless-mode ad-hoc
