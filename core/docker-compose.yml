@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+    faimai-1:
+        image: faimai-node
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - UUID="node-1"
+
+    faimai-2:
+        image: faimai-node
+        environment:
+            - UUID="node-2"
+
+    faimai-3:
+        image: faimai-node
+        environment:
+            - UUID="node-3"
