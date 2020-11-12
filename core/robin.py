@@ -2,10 +2,11 @@
 
 import socket
 import time
+# Run Only for BroadcastINg
 import json
 from os import environ
 
-print('Start sender')
+print('Start R.O.B.I.N. - STATUS BROADCASTER')
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
@@ -20,7 +21,7 @@ server.settimeout(0.2)
 
 uuid = environ["UUID"]
 
-message = { 'uuid': uuid, 'status': 'nofire' }
+message = {'uuid': uuid, 'status': 'nofire'}
 messageByte = json.dumps(message).encode('utf-8')
 
 while True:
