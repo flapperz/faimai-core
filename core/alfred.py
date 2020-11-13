@@ -5,20 +5,18 @@ import json
 import time
 from os import environ
 
-PORT = 37020
+PORT = 28795
 print('Start A.L.F.R.E.D - MESSAGE LISTENER at :{}'.format(PORT))
-client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM,
-                       socket.IPPROTO_UDP)  # UDP
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 
-client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
 
 uuid = environ["UUID"]
 # Enable broadcasting mode
+client.bind(("", PORT))
 client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 member = dict()
 
-client.bind(("", PORT))
 while True:
     data, addr = client.recvfrom(1024)
     message = json.loads(data)

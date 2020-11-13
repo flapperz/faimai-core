@@ -8,9 +8,8 @@ from os import environ
 
 print('Start R.O.B.I.N. - STATUS BROADCASTER')
 
-server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
 
 # Enable broadcasting mode
 server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -25,6 +24,6 @@ message = {'uuid': uuid, 'status': 'nofire'}
 messageByte = json.dumps(message).encode('utf-8')
 
 while True:
-    server.sendto(messageByte, ("<broadcast>", 37020))
+    server.sendto(messageByte, ("112.116.44.15", 28795))
     # print("message sent!")
     time.sleep(1)
