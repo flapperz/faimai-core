@@ -24,6 +24,6 @@ message = {'uuid': uuid, 'status': 'nofire'}
 messageByte = json.dumps(message).encode('utf-8')
 
 while True:
-    server.sendto(messageByte, ("112.116.44.15", 28795))
+    server.sendto(messageByte, ("112.116.44.1", 28795))
     # print("message sent!")
     time.sleep(1)
