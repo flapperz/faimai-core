@@ -4,7 +4,7 @@
 ## 2110481 WIRELESS NETWORK final project
 
 ## batman-adv
-- SetupBatman.sh is not finished and not tested yet, follow the second link or command written in [SetupStep.md](SetupStep.md)
+- SetupBatman.sh is not finished and not tested yet, follow the second link or command written in [SetupStep.md](batman-adv.sh/SetupStep.md)
 ## Core
 - robin is a broadcaster
 - alfred is a receiver
