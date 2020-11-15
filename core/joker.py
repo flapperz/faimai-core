@@ -9,7 +9,7 @@ import json
 PORT = 8000
 get_data = {
     "location": "Building 3",
-    "Description": "Reuse from pop bus project"
+    "description": "Reuse from pop bus project"
 }
 
 
