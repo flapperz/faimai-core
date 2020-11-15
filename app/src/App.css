@@ -1,0 +1,55 @@
+.bg{
+  width: 100vw;
+  height: 100vh;
+  background-color: #272522;
+}
+
+.header{
+  color: orange;
+  padding-top: 5% ;
+  padding-bottom: 4%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 59px;
+  text-align: center;
+}
+
+.table{
+  margin-left:auto ;
+  margin-right:auto ;
+  /* border: 1px solid black; */
+  font-size: 20px;
+  width: 900px;
+}
+
+.tableHeader{
+  background-color: #FFB636;
+  border-radius: 40px 40px 0px 0px;
+  color: #272522;
+  font-weight: bold;
+}
+
+.tableBody{
+  background-color:  #FFF9EF;
+  padding-bottom: 90px;
+  border-radius: 0px 0px 40px 40px;
+  color: #5D5B57;
+}
+
+th, td {
+  padding: 30px 15px;
+  /* border: 1px solid black; */
+  width: 300px;
+  text-align: center;
+}
+
+.disconnected{
+  color: #DEDDDC;
+}
+
+.fire{
+  margin-top:-50px;
+  margin-left: 365px;
+}
