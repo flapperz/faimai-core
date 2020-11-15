@@ -24,17 +24,17 @@ while True:
     recvTime = time.time()
 
     recvId = message["uuid"]
+	seq = message["seq"]
 
     if recvId != uuid:
         print("[{}] received message from <{}> status <{}> on <{}>".format(
             uuid, message["uuid"], message["isFire"], time.asctime(time.localtime(recvTime))))
 
-        if recvId not in member:
+        if recvId not in member or member[recvId]["seq"]!=seq:
             try:
                 req = requests.get("http://{}:8000".format(addr[0]))
-                print(addr[0])
-                member[recvId] = {"ip": addr, "information": req.json()}
-                print(member)
+                member[recvId] = {"ip": addr, "information": req.json(), "seq": seq}
+		
                 print("new entry uuid <{}> with address <{}>".format(recvId, addr))
             except:
                 print("Fetch from other joker fail")
