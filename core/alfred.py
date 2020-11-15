@@ -3,6 +3,7 @@
 import socket
 import json
 import time
+import requests
 from os import environ
 
 PORT = 28795
@@ -29,5 +30,8 @@ while True:
             uuid, message["uuid"], message["status"], time.asctime(time.localtime(recvTime))))
 
         if recvId not in member:
-            member[recvId] = addr
+            print("call at {}".format("{}:8000".format(addr)))
+            req = requests.get("{}:8000".format(addr))
+            member[recvId] = {"ip": addr, "information": req.json()}
+            print(member)
             print("new entry uuid <{}> with address <{}>".format(recvId, addr))
