@@ -4,7 +4,6 @@ import socket
 import json
 import time
 import requests
-import gpiozero
 from os import environ
 
 PORT = 28795
@@ -28,11 +27,14 @@ while True:
 
     if recvId != uuid:
         print("[{}] received message from <{}> status <{}> on <{}>".format(
-            uuid, message["uuid"], message["status"], time.asctime(time.localtime(recvTime))))
+            uuid, message["uuid"], message["isFire"], time.asctime(time.localtime(recvTime))))
 
         if recvId not in member:
-            print("call at {}".format("{}:8000".format(addr)))
-            req = requests.get("{}:8000".format(addr))
-            member[recvId] = {"ip": addr, "information": req.json()}
-            print(member)
-            print("new entry uuid <{}> with address <{}>".format(recvId, addr))
+            try:
+                req = requests.get("http://{}:8000".format(addr[0]))
+                print(addr[0])
+                member[recvId] = {"ip": addr, "information": req.json()}
+                print(member)
+                print("new entry uuid <{}> with address <{}>".format(recvId, addr))
+            except:
+                print("Fetch from other joker fail")
