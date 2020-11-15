@@ -4,6 +4,7 @@ import socket
 import json
 import time
 import requests
+import gpiozero
 from os import environ
 
 PORT = 28795
