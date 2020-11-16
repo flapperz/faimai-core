@@ -1,7 +1,6 @@
 # AppLication For Read Entered Data
 # base from https://github.com/ninedraft/python-udp
 import socket
-import socketio
 import json
 import time
 import requests
@@ -21,6 +20,7 @@ client.bind(("", PORT))
 client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 member = dict()
+entry = dict()
 
 while True:
     data, addr = client.recvfrom(1024)
@@ -42,3 +42,15 @@ while True:
             print("new entry uuid <{}> with address <{}>".format(recvId, addr))
         except:
             print("Fetch from other joker fail")
+
+    entry[recvId] = message["isFire"]
+    payload = dict()
+    for k,v in entry.items():
+        payload[k] = {}
+        if k in member:
+            payload[k] = {**member[k]}
+        payload[k]["isFire"] = message["isFire"]
+        try:
+            requests.post("http://localhost:8000/setpolldata",data=json.dumps(payload))
+        except Exception as e:
+            print("Update joker **may be** fail")

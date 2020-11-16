@@ -13,9 +13,9 @@ print('Start R.O.B.I.N. - STATUS BROADCASTER')
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-address = ('localhost', 6000)
-listener = Listener(address)
-conn = listener.accept()
+# address = ('localhost', 6000)
+# listener = Listener(address)
+# conn = listener.accept()
 
 # Enable broadcasting mode
 server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -33,6 +33,7 @@ while True:
     # if conn.recv() == "update":
     #     seq += 1
     message = {'uuid': uuid, 'isFire': 1, 'seq': seq}
+    print('send',message)
     messageByte = json.dumps(message).encode('utf-8')
     server.sendto(messageByte, ("112.116.44.15", 28795))
     time.sleep(1)

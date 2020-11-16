@@ -1,4 +1,4 @@
-# Just Offer read/edit Kormoon ovEr Rest api
+# Just Offer Kormoon ovEr Rest api
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from http import HTTPStatus
 import json
@@ -43,8 +43,8 @@ class _RequestHandler(BaseHTTPRequestHandler):
             poll_data = message
         elif self.path.strip() == "/setmetadata":
             get_data = message
-            # self._set_headers()
-            # self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
+        self._set_headers()
+        self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):
         # Send allow-origin header for preflight POST XHRs.
