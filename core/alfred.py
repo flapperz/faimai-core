@@ -37,7 +37,7 @@ while True:
         try:
             req = requests.get("http://{}:8000/get".format(addr[0]))
             member[recvId] = {"ip": addr,
-                              "information": req.json(), "seq": seq, "online": online}
+                              "information": req.json(), "seq": seq}
 
             print("new entry uuid <{}> with address <{}>".format(recvId, addr))
         except:
