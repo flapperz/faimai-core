@@ -1,7 +1,29 @@
 import fire from './fire.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import { useInterval } from './useInterval';
 
 function App() {
+  const [data, setData] = useState({});
+
+  useInterval(async () => {
+    // console.log("effect")
+    fetch(
+      `http://localhost:8000/poll`,
+      {
+        method: "GET",
+      }
+    )
+      .then(res => res.json())
+      .then(response => {
+        console.log(response)
+        setData(response)
+      })
+      .catch(error => console.log(error));
+  }, 1000);
+
+
+
   return (
     <div className="bg">
       <div className="header">
