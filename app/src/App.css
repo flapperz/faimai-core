@@ -19,9 +19,8 @@
 .table{
   margin-left:auto ;
   margin-right:auto ;
-  /* border: 1px solid black; */
   font-size: 20px;
-  width: 900px;
+  width: 910px;  
 }
 
 .tableHeader{
@@ -38,16 +37,15 @@
   color: #5D5B57;
 }
 
-th, td {
+td {
   padding: 30px 15px;
-  /* border: 1px solid black; */
-  width: 300px;
+  width: 150px;
   text-align: center;
 }
 
-.disconnected{
+/* .disconnected{
   color: #DEDDDC;
-}
+} */
 
 .fire{
   margin-top:-50px;
