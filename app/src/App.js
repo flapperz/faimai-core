@@ -1,9 +1,9 @@
 import fire from './fire.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-// import { useInterval } from './useInterval';
-
+import { useInterval } from './useInterval';
 function App() {
+  // const [data, setData] = useState({"ubuntu1": {"ip": ["112.116.44.3",51379],"information": {"location": "Building 3","description": "Reuse from pop bus project"},"seq": 0,"isFire": 1},"ubuntu2": {"ip": ["112.116.44.2",51379],"information": {"location": "Building 2","description": "fuck"},"seq": 0,"isFire": 1}});
   const [data, setData] = useState({"ubuntu1": {"ip": ["112.116.44.3",51379],"information": {"location": "Building 3","description": "Reuse from pop bus project"},"seq": 0,"isFire": 1},"ubuntu2": {"ip": ["112.116.44.2",51379],"information": {"location": "Building 2","description": "fuck"},"seq": 0,"isFire": 1}});
   const [nodeList, setNodeList] = useState(Object.keys(data))
   const status = {0:'normal',1:'fire'}
