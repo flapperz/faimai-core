@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 function App() {
   const [data, setData] = useState({"ubuntu1": {"ip": ["112.116.44.3",51379],"information": {"location": "Building 3","description": "Reuse from pop bus project"},"seq": 0,"isFire": 1},"ubuntu2": {"ip": ["112.116.44.2",51379],"information": {"location": "Building 2","description": "fuck"},"seq": 0,"isFire": 1}});
   const [nodeList, setNodeList] = useState(Object.keys(data))
-  
+  const status = {0:'normal',1:'fire'}
   // useInterval(async () => {
   //   // console.log("effect")
   //   fetch(
@@ -46,7 +46,7 @@ function App() {
                 <td>{data[node].ip[0]}</td>
                 <td>{data[node].information.location}</td>
                 <td>{data[node].information.description}</td>
-                <td>{data[node].isFire}</td>
+                <td>{status[data[node].isFire]}</td>
             </tr>)
             })
           }
