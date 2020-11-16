@@ -6,7 +6,8 @@ function App() {
   // const [data, setData] = useState({"ubuntu1": {"ip": ["112.116.44.3",51379],"information": {"location": "Building 3","description": "Reuse from pop bus project"},"seq": 0,"isFire": 1},"ubuntu2": {"ip": ["112.116.44.2",51379],"information": {"location": "Building 2","description": "fuck"},"seq": 0,"isFire": 1}});
   const [data, setData] = useState({});
   const [nodeList, setNodeList] = useState(Object.keys(data))
-  const status = {false:'normal',true:'fire'}
+  const isFire = {false:'normal',true:'fire'}
+  const status = {false:'offline',true:'online'}
   useInterval(async () => {
     // console.log("effect")
     fetch(
@@ -37,17 +38,20 @@ function App() {
               <td>LOCATION</td>
               <td>DESCRIPTION</td>
               <td>STATUS</td>
+              <td>IS_FIRE ?</td>
             </tr>
           </div>
           <div className="tableBody">
           {
             nodeList.map((node)=>{
-              return (<tr>
+              const onlineStatus = status[data[node]?.online || false]
+              return (<tr className={onlineStatus}>
                 <td>{node}</td>
-                <td>{data[node].ip[0]}</td>
-                <td>{data[node].information.location}</td>
-                <td>{data[node].information.description}</td>
-                <td>{status[data[node].isFire]}</td>
+                <td>{data[node]?.ip[0] || 'Unknown'}</td>
+                <td>{data[node]?.information.location || 'Unknown'}</td>
+                <td>{data[node]?.information.description || 'Unknown'}</td>
+                <td>{onlineStatus || 'offline' }</td>
+                <td>{isFire[data[node]?.isFire] || 'Unknown'}</td>
             </tr>)
             })
           }
