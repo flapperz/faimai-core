@@ -54,8 +54,8 @@ while True:
             payload[k]["online"] = False
         else:
             payload[k]["online"] = True
-        payload[k]["isFire"] = message["isFire"]
-        try:
-            requests.post("http://localhost:8000/setpolldata",data=json.dumps(payload))
-        except Exception as e:
-            print("Update joker **may be** fail")
+        payload[k]["isFire"] = v["isFire"]
+    try:
+        requests.post("http://localhost:8000/setpolldata",data=json.dumps(payload))
+    except Exception as e:
+        print("Update joker **may be** fail")
