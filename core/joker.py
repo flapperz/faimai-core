@@ -10,7 +10,6 @@ PORT = 8000
 get_data = {
     "location": "Building 3",
     "description": "Reuse from pop bus project",
-    "counter": 0
 }
 
 poll_data = {

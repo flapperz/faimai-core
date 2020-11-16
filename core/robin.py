@@ -6,8 +6,8 @@ import time
 import json
 from os import environ
 from multiprocessing.connection import Listener
-# from gpiozero import LineSensor
-# sensor = LineSensor(4)
+from gpiozero import LineSensor
+sensor = LineSensor(4)
 
 print('Start R.O.B.I.N. - STATUS BROADCASTER')
 
@@ -30,9 +30,8 @@ except:
 seq = 0
 
 while True:
-    # if conn.recv() == "update":
-    #     seq += 1
-    message = {'uuid': uuid, 'isFire': 1, 'seq': seq}
+    message = {'uuid': uuid, 'isFire': sensor.value==1, 'seq': seq}
+    message = {'uuid': uuid, 'isFire': True, 'seq': seq}
     print('send',message)
     messageByte = json.dumps(message).encode('utf-8')
     server.sendto(messageByte, ("112.116.44.15", 28795))
