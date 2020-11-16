@@ -7,21 +7,21 @@ function App() {
   const [data, setData] = useState({"ubuntu1": {"ip": ["112.116.44.3",51379],"information": {"location": "Building 3","description": "Reuse from pop bus project"},"seq": 0,"isFire": 1},"ubuntu2": {"ip": ["112.116.44.2",51379],"information": {"location": "Building 2","description": "fuck"},"seq": 0,"isFire": 1}});
   const [nodeList, setNodeList] = useState(Object.keys(data))
   const status = {0:'normal',1:'fire'}
-  // useInterval(async () => {
-  //   // console.log("effect")
-  //   fetch(
-  //     `http://localhost:8000/poll`,
-  //     {
-  //       method: "GET",
-  //     }
-  //   )
-  //     .then(res => res.json())
-  //     .then(response => {
-  //       console.log(response)
-  //       setData(response)
-  //     })
-  //     .catch(error => console.log(error));
-  // }, 1000);
+  useInterval(async () => {
+    // console.log("effect")
+    fetch(
+      `http://localhost:8000/poll`,
+      {
+        method: "GET",
+      }
+    )
+      .then(res => res.json())
+      .then(response => {
+        console.log(response)
+        setData(response)
+      })
+      .catch(error => console.log(error));
+  }, 1000);
   
   return (
     <div className="bg">
