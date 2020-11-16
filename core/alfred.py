@@ -26,29 +26,34 @@ while True:
     data, addr = client.recvfrom(1024)
     message = json.loads(data)
     recvTime = time.time()
-
+    # print(recvTime)
     recvId = message["uuid"]
     seq = message["seq"]
 
     print("[{}] received message from <{}> status <{}> on <{}>".format(
         uuid, message["uuid"], message["isFire"], time.asctime(time.localtime(recvTime))))
 
-    if recvId not in member or member[recvId]["seq"] != seq:
+    if recvId not in member:
         try:
             req = requests.get("http://{}:8000/get".format(addr[0]))
             member[recvId] = {"ip": addr,
-                              "information": req.json(), "seq": seq}
+                              "information": req.json(), "seq": seq, "online": online}
 
             print("new entry uuid <{}> with address <{}>".format(recvId, addr))
         except:
             print("Fetch from other joker fail")
-
-    entry[recvId] = message["isFire"]
+    
+    entry[recvId] = {"isFire":message["isFire"], "lastUpdate":recvTime}
+    
     payload = dict()
     for k,v in entry.items():
         payload[k] = {}
         if k in member:
             payload[k] = {**member[k]}
+        if recvTime - v["lastUpdate"] > 3:
+            payload[k]["online"] = False
+        else:
+            payload[k]["online"] = True
         payload[k]["isFire"] = message["isFire"]
         try:
             requests.post("http://localhost:8000/setpolldata",data=json.dumps(payload))
