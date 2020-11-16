@@ -9,7 +9,12 @@ import json
 PORT = 8000
 get_data = {
     "location": "Building 3",
-    "description": "Reuse from pop bus project"
+    "description": "Reuse from pop bus project",
+    "counter": 0
+}
+
+poll_data = {
+
 }
 
 
@@ -25,15 +30,21 @@ class _RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write(json.dumps(get_data).encode('utf-8'))
+        if self.path.strip() == "/poll":
+            self.wfile.write(json.dumps(poll_data).encode('utf-8'))
+        elif self.path.strip() == "/get":
+            self.wfile.write(json.dumps(get_data).encode('utf-8'))
 
     def do_POST(self):
+        global get_data, poll_data
         length = int(self.headers.get('content-length'))
         message = json.loads(self.rfile.read(length))
-        message['date_ms'] = int(time.time()) * 1000
-        _g_posts.append(message)
-        self._set_headers()
-        self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
+        if self.path.strip() == "/setpolldata":
+            poll_data = message
+        elif self.path.strip() == "/setmetadata":
+            get_data = message
+            # self._set_headers()
+            # self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
 
     def do_OPTIONS(self):
         # Send allow-origin header for preflight POST XHRs.
